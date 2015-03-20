@@ -15,13 +15,13 @@ As all can see, this library has multiple problems. I'm working for redo all the
 This mean this current version is no longer maintained and I will not do any bug fix for it.
 
 Dependency: [Android-UI](https://github.com/markushi/android-ui) Reveal Color View <br>
-If you are using MaterialTabs in your app and would like to be listed here, please let me know via [email](mailto:neokree@gmail.com)! <br>
+If you are using MaterialTabs in your app and would like to be listed here, please let me know via [email](mailto:hesk.kam@101medialab.com)! <br>
 
 <h3>How to use:</h3>
 define it in xml layout with custom attributes
 ```xml
 <!-- for Text Tabs -->
-<it.neokree.materialtabs.MaterialTabHost
+<hkm.ui.materialtabs.MaterialTabHost
         android:id="@+id/materialTabHost"
         android:layout_width="match_parent"
         android:layout_height="48dp"
@@ -30,7 +30,7 @@ define it in xml layout with custom attributes
         app:nonFixTabsCountStart="4"
         app:accentColor="YOUR_ACCENT_COLOR" />
 <!-- for icon tabs --> 
-<it.neokree.materialtabs.MaterialTabHost
+<hkm.ui.materialtabs.MaterialTabHost
         android:id="@+id/materialTabHost"
         android:layout_width="match_parent"
         android:layout_height="48dp"
