@@ -26,7 +26,8 @@ define it in xml layout with custom attributes
         android:layout_width="match_parent"
         android:layout_height="48dp"
         app:textColor="#FFFFFF"
-        app:primaryColor="YOUR_PRIMARY_COLOR"
+        app:materialTabsPrimaryColor="YOUR_PRIMARY_COLOR"
+        app:nonFixTabsCountStart="4"
         app:accentColor="YOUR_ACCENT_COLOR" />
 <!-- for icon tabs --> 
 <it.neokree.materialtabs.MaterialTabHost
@@ -34,8 +35,9 @@ define it in xml layout with custom attributes
         android:layout_width="match_parent"
         android:layout_height="48dp"
         app:iconColor="#FFFFFF"
-        app:primaryColor="YOUR_PRIMARY_COLOR"
+        app:materialTabsPrimaryColor="YOUR_PRIMARY_COLOR"
         app:accentColor="YOUR_ACCENT_COLOR"
+        app:nonFixTabsCountStart="4"
         app:hasIcons="true"/>
 ```
 <em>( I'm working on use wrap_content instead 48dp)</em>
@@ -89,7 +91,7 @@ N.B. Your activity must <code>extends ActionBarActivity implements MaterialTabLi
 Add this to your build.gradle:
 ```java 
 dependencies {
-    compile 'it.neokree:MaterialTabs:0.11'
+   
 }
 ```
 
