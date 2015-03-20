@@ -101,8 +101,9 @@ These problems are currently in development
 
 ### Fixed and Scrollable tabs. 
 ###### With text tabs
-[1 - 3] Fixed Tabs <br>
-[4 - &infin;] Scrollable Tabs
+N default  = 3
+[1 - N] Fixed Tabs <br>
+[N - &infin;] Scrollable Tabs
 ###### With icon tabs
 [1 - 5] Fixed Tabs <br>
 [6 - &infin;] Scrollable Tabs
