@@ -86,11 +86,21 @@ N.B. Your activity must <code>extends ActionBarActivity implements MaterialTabLi
 ### How to import
 ###### Android Studio
 Add this to your build.gradle:
-```java 
+```gradle
 dependencies {
 	        compile 'com.github.jjhesk:MaterialTabsAdavanced:v0.15'
 	}
 ```
+additional build scripts
+```gradle
+  repositories {
+        jcenter()
+        maven {
+            url "https://jitpack.io"
+        }
+    }
+    ```
+
 
 <h3>Limitations</h3>
 Actually, this library have some limitations: 
