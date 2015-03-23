@@ -91,7 +91,8 @@ dependencies {
 	        compile 'com.github.jjhesk:MaterialTabsAdavanced:v0.15'
 	}
 ```
-additional build scripts
+
+Additional build script
 ```gradle
   repositories {
         jcenter()
@@ -99,7 +100,7 @@ additional build scripts
             url "https://jitpack.io"
         }
     }
-    ```
+```
 
 
 <h3>Limitations</h3>
