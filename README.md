@@ -1,8 +1,8 @@
-MaterialTabsAdvanced
+MaterialTabsAdvanced [![maven](https://img.shields.io/github/tag/jjhesk/MaterialTabsAdavanced.svg?label=maven)](https://jitpack.io/#jjhesk/MaterialTabsAdavanced/) [![API](https://img.shields.io/badge/API-17%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=17) [![gitpay](http://fc07.deviantart.net/fs70/f/2012/336/f/9/little_pixel_heart_by_tiny_bear-d5mtwiu.gif)](https://gratipay.com/jjhesk/)
 ============
 
 Custom Tabs with Material Design animations for pre-Lollipop devices<br>
-[![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-MaterialTabs-brightgreen.svg?style=flat)](https://android-arsenal.com/details/1/1105)&ensp;&ensp;&ensp;&ensp;&ensp;[![Donate](https://www.paypalobjects.com/en_GB/i/btn/btn_donate_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=TLLU42DEL36RY)
+[![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-MaterialTabs-brightgreen.svg?style=flat)](https://android-arsenal.com/details/1/1105) 
 
 
 [Download example apk](https://raw.github.com/neokree/MaterialTabs/master/example.apk)
@@ -91,8 +91,8 @@ N.B. Your activity must <code>extends ActionBarActivity implements MaterialTabLi
 Add this to your build.gradle:
 ```java 
 dependencies {
-   
-}
+	        compile 'com.github.jjhesk:MaterialTabsAdavanced:v0.15'
+	}
 ```
 
 <h3>Limitations</h3>
