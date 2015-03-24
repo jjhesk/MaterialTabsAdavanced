@@ -83,12 +83,12 @@ MaterialTabHost tabHost;
 N.B. Your activity must <code>extends ActionBarActivity implements MaterialTabListener</code>
 
 
-### How to import
-###### Android Studio
+## How to import
+Please check with [release log](https://github.com/jjhesk/MaterialTabsAdavanced/releases) or look at [![maven](https://img.shields.io/github/tag/jjhesk/MaterialTabsAdavanced.svg?label=maven)](https://jitpack.io/#jjhesk/MaterialTabsAdavanced/)
 Add this to your build.gradle:
 ```gradle
 dependencies {
-	        compile 'com.github.jjhesk:MaterialTabsAdavanced:v0.15'
+	        compile 'com.github.jjhesk:MaterialTabsAdavanced:vX.XX'
 	}
 ```
 
