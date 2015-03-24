@@ -1,4 +1,5 @@
 apply plugin: 'com.android.library'
+apply plugin: 'android-maven'
 
 android {
     compileSdkVersion 21
@@ -7,7 +8,7 @@ android {
     defaultConfig {
         minSdkVersion 16
         targetSdkVersion 21
-        versionCode 1
+        versionCode 32
         versionName 'dev'
     }
     buildTypes {
