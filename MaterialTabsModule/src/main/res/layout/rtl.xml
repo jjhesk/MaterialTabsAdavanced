@@ -3,10 +3,25 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <at.markushi.ui.RevealColorView
+        android:id="@+id/reveal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+
     <LinearLayout
+        android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center">
+
+        <TextView
+            android:id="@+id/text"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textSize="@dimen/materialTextTab" />
 
         <ImageView
             android:id="@+id/icon"

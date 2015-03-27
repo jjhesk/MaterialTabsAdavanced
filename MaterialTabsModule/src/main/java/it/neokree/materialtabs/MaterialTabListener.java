@@ -1,4 +1,4 @@
-package hkm.ui.materialtabs;
+package it.neokree.materialtabs;
 
 public interface MaterialTabListener {
 	public void onTabSelected(MaterialTab tab);

@@ -1,4 +1,4 @@
-package hkm.ui.materialtabs;
+package it.neokree.materialtabs;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -14,8 +14,6 @@ import android.widget.RelativeLayout;
 
 import java.util.LinkedList;
 import java.util.List;
-
-import it.neokree.materialtabs.R;
 
 
 /**
@@ -40,7 +38,7 @@ public class MaterialTabHost extends RelativeLayout implements View.OnClickListe
     private LinearLayout layout;
     private ImageButton left;
     private ImageButton right;
-
+    private int custom_tab_layout_id;
     private static int tabSelected;
 
     public MaterialTabHost(Context context) {
@@ -67,13 +65,13 @@ public class MaterialTabHost extends RelativeLayout implements View.OnClickListe
             try {
                 // custom attributes
                 hasIcons = a.getBoolean(R.styleable.MaterialTabHost_hasIcons, false);
-
                 primaryColor = a.getColor(R.styleable.MaterialTabHost_materialTabsPrimaryColor, Color.parseColor("#009688"));
                 accentColor = a.getColor(R.styleable.MaterialTabHost_accentColor, Color.parseColor("#00b0ff"));
                 iconColor = a.getColor(R.styleable.MaterialTabHost_iconColor, Color.WHITE);
                 textColor = a.getColor(R.styleable.MaterialTabHost_textColor, Color.WHITE);
                 int defaultFixTabsLimit = getResources().getInteger(R.integer.defaultNonFixTabsCountStart);
                 fixtablimit = a.getColor(R.styleable.MaterialTabHost_nonFixTabsCountStart, defaultFixTabsLimit);
+                custom_tab_layout_id = a.getResourceId(R.styleable.MaterialTabHost_customTabLayout, -1);
             } finally {
                 a.recycle();
             }
@@ -86,12 +84,69 @@ public class MaterialTabHost extends RelativeLayout implements View.OnClickListe
         isTablet = this.getResources().getBoolean(R.bool.isTablet);
         density = this.getResources().getDisplayMetrics().density;
         tabSelected = 0;
-
         // initialize tabs list
         tabs = new LinkedList<MaterialTab>();
-
         // set background color
         super.setBackgroundColor(primaryColor);
+    }
+
+    /**
+     * this will only work if you have setup the layout attribute in the xml component
+     * please also check if you have put layout reference id in the xml @customTabLayout
+     *
+     * @param label_text
+     * @return
+     */
+    public MaterialTab createCustomTextTab(String label_text) {
+        final MaterialTab mattab = new MaterialTab(this.getContext(),
+                new tabBuilder(tabBuilder.layout.TAB_CUSTOM_TEXT)
+                        .with(getContext())
+                        .setLayout(custom_tab_layout_id)
+                        .initInstance());
+        mattab.setText(label_text);
+        return mattab;
+    }
+
+    /**
+     * programmatically select the layout id and have it reference in the runtime
+     *
+     * @param custom_tab_layout_id
+     * @param label_text
+     * @return
+     */
+    public MaterialTab createCustomTextTab(int custom_tab_layout_id, String label_text) {
+        final MaterialTab mattab = new MaterialTab(this.getContext(),
+                new tabBuilder(tabBuilder.layout.TAB_CUSTOM_TEXT)
+                        .with(getContext())
+                        .initInstance());
+        mattab.setText(label_text);
+        return mattab;
+    }
+
+    /**
+     * initialize the interactive tab during the run time
+     *
+     * @param label_text
+     * @return
+     */
+    public MaterialTab createInteractiveTab(String label_text) {
+        final MaterialTab mattab = new MaterialTab(this.getContext(),
+                new tabBuilder(tabBuilder.layout.TAB_MATERIAL)
+                        .with(getContext())
+                        .initInstance());
+        mattab.setText(label_text);
+        return mattab;
+    }
+
+    public MaterialTab createTabText(String label_text) {
+        final MaterialTab mattab = new MaterialTab(this.getContext(),
+                new tabBuilder(tabBuilder.layout.TAB_CLASSIC).with(getContext()).initInstance());
+        mattab.setText(label_text);
+        return mattab;
+    }
+
+    public MaterialTab createTab(tabBuilder n) {
+        return new MaterialTab(this.getContext(), n);
     }
 
     /**
@@ -109,6 +164,7 @@ public class MaterialTabHost extends RelativeLayout implements View.OnClickListe
         }
         notifyDataSetChanged();
     }
+
 
     public void setPrimaryColor(int color) {
         this.primaryColor = color;
@@ -165,9 +221,6 @@ public class MaterialTabHost extends RelativeLayout implements View.OnClickListe
         }
     }
 
-    public MaterialTab newTab() {
-        return new MaterialTab(this.getContext(), hasIcons);
-    }
 
     public void setSelectedNavigationItem(int position) {
         if (position < 0 || position > tabs.size()) {
@@ -233,16 +286,13 @@ public class MaterialTabHost extends RelativeLayout implements View.OnClickListe
         super.removeAllViews();
         layout.removeAllViews();
 
-
         if (!scrollable) { // not scrollable tabs
             int tabWidth = this.getWidth() / tabs.size();
-
             // set params for resizing tabs width
             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(tabWidth, HorizontalScrollView.LayoutParams.MATCH_PARENT);
             for (MaterialTab t : tabs) {
                 layout.addView(t.getView(), params);
             }
-
         } else { //scrollable tabs
 
             if (!isTablet) {
