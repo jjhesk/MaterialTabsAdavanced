@@ -55,6 +55,7 @@ public class MaterialTab<T extends TextView> implements View.OnTouchListener {
     private float density;
     private Point lastTouchedPoint;
 
+
     public MaterialTab(Context ctx, tabBuilder cho) {
         density = ctx.getResources().getDisplayMetrics().density;
         res = ctx.getResources();
@@ -73,6 +74,7 @@ public class MaterialTab<T extends TextView> implements View.OnTouchListener {
         textColor = Color.WHITE; // default white text
         iconColor = Color.WHITE; // and icon
     }
+
 
 
     public void setAccentColor(int color) {
@@ -107,7 +109,7 @@ public class MaterialTab<T extends TextView> implements View.OnTouchListener {
 
     public MaterialTab setText(CharSequence text) {
         if (hasIcon)
-            throw new RuntimeException("You had setted tabs with icons, uses icons instead text");
+            throw new RuntimeException("You had set tabs with icons, uses icons instead text");
 
         this.text.setText(text.toString().toUpperCase(Locale.US));
         return this;
@@ -115,7 +117,7 @@ public class MaterialTab<T extends TextView> implements View.OnTouchListener {
 
     public MaterialTab setIcon(Drawable icon) {
         if (!hasIcon)
-            throw new RuntimeException("You had setted tabs without icons, uses text instead icons");
+            throw new RuntimeException("You had set tabs without icons, uses text instead icons");
 
         iconDrawable = icon;
 
