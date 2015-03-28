@@ -8,9 +8,9 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import hkm.ui.materialtabs.MaterialTab;
-import hkm.ui.materialtabs.MaterialTabHost;
-import hkm.ui.materialtabs.MaterialTabListener;
+import it.neokree.materialtabs.MaterialTab;
+import it.neokree.materialtabs.MaterialTabHost;
+import it.neokree.materialtabs.MaterialTabListener;
 
 
 public class MainActivity extends ActionBarActivity implements MaterialTabListener {
@@ -49,8 +49,8 @@ public class MainActivity extends ActionBarActivity implements MaterialTabListen
         // insert all tabs from pagerAdapter data
         for (int i = 0; i < mMyAdapter.getCount(); i++) {
             tabHost.addTab(
-                    tabHost.newTab()
-                            .setText(mMyAdapter.getPageTitle(i))
+                    tabHost
+                            .createInteractiveTab(mMyAdapter.getPageTitle(i))
                             .setTabListener(this)
             );
         }
