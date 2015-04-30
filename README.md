@@ -1,8 +1,8 @@
-MaterialTabsAdvanced [![maven](https://img.shields.io/github/tag/jjhesk/MaterialTabsAdavanced.svg?label=maven)](https://jitpack.io/#jjhesk/MaterialTabsAdavanced/) [![API](https://img.shields.io/badge/API-17%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=17) [![gitpay](http://fc07.deviantart.net/fs70/f/2012/336/f/9/little_pixel_heart_by_tiny_bear-d5mtwiu.gif)](https://gratipay.com/jjhesk/)
+MaterialTabsAdvanced [![maven](https://img.shields.io/github/tag/jjhesk/MaterialTabsAdavanced.svg?label=maven)](https://jitpack.io/#jjhesk/MaterialTabsAdavanced/) [![API](https://img.shields.io/badge/API-17%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=17) [![gitpay](http://fc07.deviantart.net/fs70/f/2012/336/f/9/little_pixel_heart_by_tiny_bear-d5mtwiu.gif)](https://gratipay.com/jjhesk/)  [ ![Download](https://api.bintray.com/packages/jjhesk/maven/advancedmaterialtabs/images/download.svg) ](https://bintray.com/jjhesk/maven/advancedmaterialtabs/_latestVersion)
 ============
 
 Custom Tabs with Material Design animations for pre-Lollipop devices<br>
-[![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-MaterialTabs-brightgreen.svg?style=flat)](https://android-arsenal.com/details/1/1105) 
+[![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-MaterialTabs-brightgreen.svg?style=flat)](https://android-arsenal.com/details/1/1105)
 
 
 [Download example apk](https://raw.github.com/neokree/MaterialTabs/master/example.apk)
@@ -26,7 +26,7 @@ define it in xml layout with custom attributes
         app:materialTabsPrimaryColor="YOUR_PRIMARY_COLOR"
         app:nonFixTabsCountStart="4"
         app:accentColor="YOUR_ACCENT_COLOR" />
-<!-- for icon tabs --> 
+<!-- for icon tabs -->
 <hkm.ui.materialtabs.MaterialTabHost
         android:id="@+id/materialTabHost"
         android:layout_width="match_parent"
@@ -47,10 +47,10 @@ MaterialTabHost tabHost;
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		
+
 		tabHost = (MaterialTabHost) this.findViewById(R.id.materialTabHost);
 		pager = (ViewPager) this.findViewById(R.id.viewpager);
-		
+
 		// init view pager
 		pagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
 		pager.setAdapter(pagerAdapter);
@@ -61,11 +61,11 @@ MaterialTabHost tabHost;
                 tabHost.setSelectedNavigationItem(position);
             }
         });
-		
+
 		// insert all tabs from pagerAdapter data
 		for (int i = 0; i < pagerAdapter.getCount(); i++) {
             tabHost.addTab(
-                    tabHost.newTab() 
+                    tabHost.newTab()
                             .setIcon(getIcon(i))
                             .setTabListener(this)
                             );
@@ -76,40 +76,49 @@ MaterialTabHost tabHost;
 	public void onTabSelected(MaterialTab tab) {
 		// when the tab is clicked the pager swipe content to the tab position
 		pager.setCurrentItem(tab.getPosition());
-		
+
 	}
 ```
 
 N.B. Your activity must <code>extends ActionBarActivity implements MaterialTabListener</code>
 
 
-## How to import
-Please check with [release log](https://github.com/jjhesk/MaterialTabsAdavanced/releases) or look at [![maven](https://img.shields.io/github/tag/jjhesk/MaterialTabsAdavanced.svg?label=maven)](https://jitpack.io/#jjhesk/MaterialTabsAdavanced/)
-Add this to your build.gradle:
+## Installations
+Please check with supported repo mavens
+
+###jitpack remote
 ```gradle
+repositories {
+    maven {  url "https://jitpack.io"  }
+}
+
 dependencies {
 	        compile 'com.github.jjhesk:MaterialTabsAdavanced:vX.XX'
 	}
 ```
 
-Additional build script
+###Bintray Remote
 ```gradle
-  repositories {
-        jcenter()
-        maven {
-            url "https://jitpack.io"
-        }
-    }
+
+repositories {
+    maven {  url "http://dl.bintray.com/jjhesk/maven"  }
+}
+
+dependencies {
+    compile 'com.hkm:advancedmeterialtabs:1.0.0'
+}
+
 ```
 
 
+
 <h3>Limitations</h3>
-Actually, this library have some limitations: 
+Actually, this library have some limitations:
 - No selector animations
 
 These problems are currently in development
 
-### Fixed and Scrollable tabs. 
+### Fixed and Scrollable tabs.
 ###### With text tabs
 N default  = 3
 [1 - N] Fixed Tabs <br>

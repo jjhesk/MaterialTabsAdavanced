@@ -75,14 +75,14 @@ public class MaterialTabHost extends RelativeLayout implements View.OnClickListe
 
             try {
                 // custom attributes
-                hasIcons = a.getBoolean(R.styleable.MaterialTabHost_hasIcons, false);
-                primaryColor = a.getColor(R.styleable.MaterialTabHost_materialTabsPrimaryColor, Color.parseColor("#009688"));
-                accentColor = a.getColor(R.styleable.MaterialTabHost_accentColor, Color.parseColor("#00b0ff"));
-                iconColor = a.getColor(R.styleable.MaterialTabHost_iconColor, Color.WHITE);
-                textColor = a.getColor(R.styleable.MaterialTabHost_textColor, Color.WHITE);
+                hasIcons = a.getBoolean(R.styleable.MaterialTabHost_advtabs_hasIcons, false);
+                primaryColor = a.getColor(R.styleable.MaterialTabHost_advtabs_materialTabsPrimaryColor, Color.parseColor("#009688"));
+                accentColor = a.getColor(R.styleable.MaterialTabHost_advtabs_accentColor, Color.parseColor("#00b0ff"));
+                iconColor = a.getColor(R.styleable.MaterialTabHost_advtabs_iconColor, Color.WHITE);
+                textColor = a.getColor(R.styleable.MaterialTabHost_advtabs_textColor, Color.WHITE);
                 int defaultFixTabsLimit = getResources().getInteger(R.integer.defaultNonFixTabsCountStart);
-                fixtablimit = a.getColor(R.styleable.MaterialTabHost_nonFixTabsCountStart, defaultFixTabsLimit);
-                custom_tab_layout_id = a.getResourceId(R.styleable.MaterialTabHost_customTabLayout, -1);
+                fixtablimit = a.getColor(R.styleable.MaterialTabHost_advtabs_nonFixTabsCountStart, defaultFixTabsLimit);
+                custom_tab_layout_id = a.getResourceId(R.styleable.MaterialTabHost_advtabs_customTabLayout, -1);
 
 
             } finally {

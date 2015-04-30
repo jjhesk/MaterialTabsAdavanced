@@ -1,0 +1,38 @@
+
+
+task incrementStoredVersionCode << {
+    incrementStoredVersionCode("$rootProject.projectDir/team-props/version.properties", 'VERSION_CODE')
+}
+
+def incrementStoredVersionCode(def fileLocation, def paramName) {
+    def versionPropsFile = file(fileLocation)
+    if (!versionPropsFile.canRead()) {
+        throw new GradleException("Could not read $fileLocation!")
+    }
+    def Properties versionProps = new Properties()
+    versionProps.load(new FileInputStream(versionPropsFile))
+
+    def code = versionProps[paramName].toInteger() + 1
+
+    versionProps[paramName] = code.toString()
+    versionProps.store(versionPropsFile.newWriter(), null)
+}
+
+def getVersionCode() {
+    getStoredVersionCode("$rootProject.projectDir/team-props/version.properties", 'VERSION_CODE')
+}
+
+def getStoredVersionCode(def fileLocation, def paramName) {
+    def versionPropsFile = file(fileLocation)
+    if (!versionPropsFile.canRead()) {
+        throw new GradleException("Could not read $fileLocation!")
+    }
+    def Properties versionProps = new Properties()
+    versionProps.load(new FileInputStream(versionPropsFile))
+
+    versionProps[paramName].toInteger()
+}
+
+ext {
+    getVersionCode = this.&getVersionCode
+}

@@ -3,8 +3,8 @@
     package="it.neokree.materialtabs">
 
     <uses-sdk
-        android:minSdkVersion="14"
-        android:targetSdkVersion="21"
+        android:minSdkVersion="16"
+        android:targetSdkVersion="22"
         tools:overrideLibrary="at.markushi.ui"/>
 
 </manifest>

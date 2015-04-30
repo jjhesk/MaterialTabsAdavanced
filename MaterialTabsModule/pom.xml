@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>AdvancedMaterialTabs</groupId>
+  <artifactId>MaterialTabsModule</artifactId>
+  <version>1.0.0</version>
+  <packaging>aar</packaging>
+  <name>Advanced Materials Tabs</name>
+  <description>Advanced Materials Tabs</description>
+  <url>https://github.com/jjhesk/MaterialTabsAdavanced</url>
+  <licenses>
+    <license>
+      <name>The MIT License (MIT)</name>
+    </license>
+  </licenses>
+  <developers>
+    <developer>
+      <id>jjhesk</id>
+      <name>Heskeyo Kam</name>
+      <email>hesk.kam@101medialab.com</email>
+    </developer>
+  </developers>
+  <scm>
+    <connection>scm:git@github.com:jjhesk/MaterialTabsAdavanced.git</connection>
+    <developerConnection>scm:git@github.com:jjhesk/MaterialTabsAdavanced.git</developerConnection>
+    <url>scm:git@github.com:jjhesk/MaterialTabsAdavanced.git</url>
+  </scm>
+</project>

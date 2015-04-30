@@ -1,1 +1,1 @@
-include ':MaterialTabsModule', ':materialtabsDemo'
+include ':MaterialTabsModule', ':example'

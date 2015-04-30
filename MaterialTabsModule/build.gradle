@@ -1,15 +1,16 @@
 apply plugin: 'com.android.library'
-apply plugin: 'android-maven'
+apply from: "$rootProject.projectDir/version.gradle"
 
 android {
     compileSdkVersion 21
-    buildToolsVersion "21.1.2"
+    buildToolsVersion '21.1.2'
 
     defaultConfig {
-        minSdkVersion 16
-        targetSdkVersion 21
-        versionCode 32
-        versionName 'dev'
+        minSdkVersion project.ANDROID_BUILD_MIN_SDK_VERSION
+        targetSdkVersion project.ANDROID_BUILD_TARGET_SDK_VERSION
+        //   versionCode Integer.parseInt(project.VERSION_CODE)
+        versionCode getVersionCode()
+        versionName project.VERSION_NAME
     }
     buildTypes {
         release {
@@ -23,4 +24,7 @@ android {
 dependencies {
     compile 'com.github.markushi:android-ui:1.2'
     compile 'com.android.support:appcompat-v7:21.0.0'
+    compile 'com.github.markushi:android-ui:1.2'
 }
+
+apply from: 'bintrayrelease.gradle'
