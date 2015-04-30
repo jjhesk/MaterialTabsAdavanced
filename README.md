@@ -16,26 +16,29 @@ If you are using MaterialTabs in your app and would like to be listed here, plea
 
 <h3>How to use:</h3>
 define it in xml layout with custom attributes
+
+setup your own attributes from the xml from [here](https://github.com/jjhesk/MaterialTabsAdavanced/blob/master/MaterialTabsModule/src/main/res/values/attrs.xml)
+
 ```xml
 <!-- for Text Tabs -->
 <hkm.ui.materialtabs.MaterialTabHost
         android:id="@+id/materialTabHost"
         android:layout_width="match_parent"
         android:layout_height="48dp"
-        app:textColor="#FFFFFF"
-        app:materialTabsPrimaryColor="YOUR_PRIMARY_COLOR"
-        app:nonFixTabsCountStart="4"
-        app:accentColor="YOUR_ACCENT_COLOR" />
+        app:advtabs_textColor="#FFFFFF"
+        app:advtabs_materialTabsPrimaryColor="YOUR_PRIMARY_COLOR"
+        app:advtabs_nonFixTabsCountStart="4"
+        app:advtabs_accentColor="YOUR_ACCENT_COLOR" />
 <!-- for icon tabs -->
 <hkm.ui.materialtabs.MaterialTabHost
         android:id="@+id/materialTabHost"
         android:layout_width="match_parent"
         android:layout_height="48dp"
-        app:iconColor="#FFFFFF"
-        app:materialTabsPrimaryColor="YOUR_PRIMARY_COLOR"
-        app:accentColor="YOUR_ACCENT_COLOR"
-        app:nonFixTabsCountStart="4"
-        app:hasIcons="true"/>
+        app:advtabs_iconColor="#FFFFFF"
+        app:advtabs_materialTabsPrimaryColor="YOUR_PRIMARY_COLOR"
+        app:advtabs_accentColor="YOUR_ACCENT_COLOR"
+        app:advtabs_nonFixTabsCountStart="4"
+        app:advtabs_hasIcons="true"/>
 ```
 <em>( I'm working on use wrap_content instead 48dp)</em>
 
@@ -76,8 +79,18 @@ MaterialTabHost tabHost;
 	public void onTabSelected(MaterialTab tab) {
 		// when the tab is clicked the pager swipe content to the tab position
 		pager.setCurrentItem(tab.getPosition());
-
 	}
+
+```
+
+###add new tab
+
+Just the text only
+```java
+private MaterialTabHost tab;
+
+   tab.addTab(tab.createCustomTextTab(R.layout.item_tab, txt, false).setTabListener(this));
+
 ```
 
 N.B. Your activity must <code>extends ActionBarActivity implements MaterialTabListener</code>
