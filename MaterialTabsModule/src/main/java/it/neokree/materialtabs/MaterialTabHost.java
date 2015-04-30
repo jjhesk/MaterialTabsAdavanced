@@ -1,10 +1,13 @@
 package it.neokree.materialtabs;
 
 import android.annotation.SuppressLint;
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.graphics.Color;
+import android.graphics.Point;
+import android.os.Build;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.HorizontalScrollView;
@@ -24,6 +27,9 @@ import java.util.List;
 @SuppressLint("InflateParams")
 public class MaterialTabHost extends RelativeLayout implements View.OnClickListener {
 
+    public static final int BESTFIT = 1, ITEMBASE = 2;
+
+
     private int primaryColor;
     private int accentColor;
     private int textColor;
@@ -42,6 +48,7 @@ public class MaterialTabHost extends RelativeLayout implements View.OnClickListe
     private static int tabSelected;
     private int borderwidth, borderColor;
     private boolean borderEdge = false;
+    private int fittype = ITEMBASE;
 
 
     public MaterialTabHost(Context context) {
@@ -51,6 +58,7 @@ public class MaterialTabHost extends RelativeLayout implements View.OnClickListe
     public MaterialTabHost(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
     }
+
 
     public MaterialTabHost(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
@@ -75,6 +83,8 @@ public class MaterialTabHost extends RelativeLayout implements View.OnClickListe
                 int defaultFixTabsLimit = getResources().getInteger(R.integer.defaultNonFixTabsCountStart);
                 fixtablimit = a.getColor(R.styleable.MaterialTabHost_nonFixTabsCountStart, defaultFixTabsLimit);
                 custom_tab_layout_id = a.getResourceId(R.styleable.MaterialTabHost_customTabLayout, -1);
+
+
             } finally {
                 a.recycle();
             }
@@ -86,11 +96,14 @@ public class MaterialTabHost extends RelativeLayout implements View.OnClickListe
         scrollable = false;
         isTablet = this.getResources().getBoolean(R.bool.isTablet);
         density = this.getResources().getDisplayMetrics().density;
+
+        // setOverScrollMode(SCROLL_AXIS_NONE);
         tabSelected = 0;
         // initialize tabs list
         tabs = new LinkedList<MaterialTab>();
         // set background color
         super.setBackgroundColor(primaryColor);
+
     }
 
     /**
@@ -117,9 +130,9 @@ public class MaterialTabHost extends RelativeLayout implements View.OnClickListe
      * @param label_text
      * @return
      */
-    public MaterialTab createCustomTextTab(int custom_tab_layout_id, String label_text) {
+    public MaterialTab createCustomTextTab(int custom_tab_layout_id, String label_text, boolean withBubble) {
         final MaterialTab mattab = new MaterialTab(this.getContext(),
-                new tabBuilder(tabBuilder.layout.TAB_CUSTOM_TEXT)
+                new tabBuilder(withBubble ? tabBuilder.layout.TAB_CUSTOM_TEXT : tabBuilder.layout.TAB_CUSTOM_NO_BUBBLE)
                         .with(getContext())
                         .setLayout(custom_tab_layout_id)
                         .initInstance());
@@ -142,6 +155,27 @@ public class MaterialTabHost extends RelativeLayout implements View.OnClickListe
         return mattab;
     }
 
+    /**
+     * just a classic material tab for
+     *
+     * @param label_text
+     * @return
+     */
+    public MaterialTab createInteractiveTab(CharSequence label_text) {
+        final MaterialTab mattab = new MaterialTab(this.getContext(),
+                new tabBuilder(tabBuilder.layout.TAB_MATERIAL)
+                        .with(getContext())
+                        .initInstance());
+        mattab.setText(label_text);
+        return mattab;
+    }
+
+    /**
+     * every thing with the default design
+     *
+     * @param label_text
+     * @return
+     */
     public MaterialTab createTabText(String label_text) {
         final MaterialTab mattab = new MaterialTab(this.getContext(),
                 new tabBuilder(tabBuilder.layout.TAB_CLASSIC).with(getContext()).initInstance());
@@ -160,6 +194,7 @@ public class MaterialTabHost extends RelativeLayout implements View.OnClickListe
      */
     public void setFixTabLimit(int n) {
         fixtablimit = n;
+        scrollable = false;
         if (tabs.size() > n && !hasIcons) {
             scrollable = true;
         }
@@ -175,6 +210,17 @@ public class MaterialTabHost extends RelativeLayout implements View.OnClickListe
         borderColor = color;
     }
 
+    public void setMeasurementType(int n) {
+        fittype = n;
+    }
+
+    @SuppressLint("ResourceAsColor")
+    public void setBorderReferenceColor(int borderWidth, int ResId) {
+        borderEdge = true;
+        borderwidth = borderWidth;
+        borderColor = layout.getContext().getResources().getColor(ResId);
+    }
+
     public void setPrimaryColor(int color) {
         this.primaryColor = color;
 
@@ -183,6 +229,10 @@ public class MaterialTabHost extends RelativeLayout implements View.OnClickListe
         for (MaterialTab tab : tabs) {
             tab.setPrimaryColor(color);
         }
+    }
+
+    public void setCustomBackground(int resId) {
+        super.setBackground(getContext().getResources().getDrawable(resId));
     }
 
     public void setAccentColor(int color) {
@@ -288,40 +338,46 @@ public class MaterialTabHost extends RelativeLayout implements View.OnClickListe
             notifyDataSetChanged();
     }
 
-    private View borderVertical;
 
-    private boolean prepareBorderView() {
-        if (borderEdge) {
-            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams((int) (borderwidth * density), HorizontalScrollView.LayoutParams.MATCH_PARENT);
-            //border set
-            borderVertical = new View(layout.getContext());
-            borderVertical.setBackgroundColor(borderColor);
-            borderVertical.setLayoutParams(params);
-        }
-        return borderEdge;
+    private View prepareBorderView() {
+
+        LinearLayout.LayoutParams separator = new LinearLayout.LayoutParams((int) (borderwidth * density), HorizontalScrollView.LayoutParams.MATCH_PARENT);
+        //border set
+        View borderVertical = new View(layout.getContext());
+        borderVertical.setBackgroundColor(borderColor);
+        borderVertical.setLayoutParams(separator);
+
+        return borderVertical;
     }
 
     /**
      * set to reinitialize the tab view
      */
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
     public void notifyDataSetChanged() {
         super.removeAllViews();
         layout.removeAllViews();
-        final boolean enabledBorder = prepareBorderView();
+
+
+        final Point s = new Point();
+        this.getDisplay().getSize(s);
+        int screen_width = s.x;
+
+
         if (!scrollable) { // not scrollable tabs
 
-            int tabWidth = this.getWidth() / tabs.size();
+            int tabWidth = screen_width / tabs.size() - (borderEdge ? (int) (borderwidth * density) : 0);
             // set params for resizing tabs width
             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(tabWidth, HorizontalScrollView.LayoutParams.MATCH_PARENT);
             for (int i = 0; i < tabs.size(); i++) {
                 MaterialTab t = tabs.get(i);
-                if (i == 0 && enabledBorder) {
+                if (i == 0 && borderEdge) {
                     // first tab
-                    layout.addView(borderVertical);
+                    layout.addView(prepareBorderView());
                 }
                 layout.addView(t.getView(), params);
-                if (enabledBorder)
-                    layout.addView(borderVertical);
+                if (borderEdge)
+                    layout.addView(prepareBorderView());
 
             }
         } else { //scrollable tabs
@@ -342,12 +398,17 @@ public class MaterialTabHost extends RelativeLayout implements View.OnClickListe
                     }
 
                     params = new LinearLayout.LayoutParams(tabWidth, HorizontalScrollView.LayoutParams.MATCH_PARENT);
+                    //add tha tab
                     layout.addView(tab.getView(), params);
 
-                    if(enabledBorder && i < tabs.size() - 1){
-                        layout.addView(borderVertical);
+
+                    //add separator
+                    if (borderEdge && i < tabs.size() - 1) {
+                        layout.addView(prepareBorderView());
                     }
 
+
+                    //add separator
                     if (i == tabs.size() - 1) {
                         // last tab
                         View view = new View(layout.getContext());

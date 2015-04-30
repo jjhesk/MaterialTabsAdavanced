@@ -18,7 +18,7 @@ import at.markushi.ui.RevealColorView;
 public class tabBuilder<T extends TextView> {
     public static enum layout {
         TAB_ICON, TAB_CLASSIC, TAB_MATERIAL, TAB_MATERIAL_ICON, TAB_CUSTOM_TEXT, TAB_CUSTOM_ICON,
-
+        TAB_CUSTOM_NO_BUBBLE,
         //@todo will need to think about how to implement LTR and RTL orientations
         TAB_HORIZONTAL_TEXT_ICON_LTR,
         TAB_HORIZONTAL_TEXT_ICON_RTL
@@ -63,11 +63,15 @@ public class tabBuilder<T extends TextView> {
                 hasIcon = false;
                 break;
 
+
+
             case TAB_ICON:
                 completeView = LayoutInflater.from(ctx).inflate(R.layout.tab_icon, null);
                 icon = (ImageView) completeView.findViewById(R.id.icon);
                 hasIcon = true;
                 break;
+
+
 
             case TAB_MATERIAL:
                 completeView = LayoutInflater.from(ctx).inflate(R.layout.material_tab, null);
@@ -76,12 +80,16 @@ public class tabBuilder<T extends TextView> {
                 hasIcon = false;
                 break;
 
+
+
             case TAB_MATERIAL_ICON:
                 completeView = LayoutInflater.from(ctx).inflate(R.layout.material_tab_icon, null);
                 icon = (ImageView) completeView.findViewById(R.id.icon);
                 background = (RevealColorView) completeView.findViewById(R.id.reveal);
                 hasIcon = true;
                 break;
+
+
 
             case TAB_CUSTOM_TEXT:
                 completeView = LayoutInflater.from(ctx).inflate(custom_layout_id, null);
@@ -90,6 +98,8 @@ public class tabBuilder<T extends TextView> {
                 hasIcon = false;
                 break;
 
+
+
             case TAB_CUSTOM_ICON:
                 completeView = LayoutInflater.from(ctx).inflate(custom_layout_id, null);
                 icon = (ImageView) completeView.findViewById(R.id.icon);
@@ -97,12 +107,21 @@ public class tabBuilder<T extends TextView> {
                 hasIcon = true;
                 break;
 
+
+            case TAB_CUSTOM_NO_BUBBLE:
+                completeView = LayoutInflater.from(ctx).inflate(custom_layout_id, null);
+                text = (T) completeView.findViewById(R.id.text);
+                hasIcon = false;
+                break;
+
+
             default:
                 completeView = LayoutInflater.from(ctx).inflate(R.layout.tab, null);
                 text = (T) completeView.findViewById(R.id.text);
                 hasIcon = false;
-
                 break;
+
+
         }
 
         selector = (ImageView) completeView.findViewById(R.id.selector);
