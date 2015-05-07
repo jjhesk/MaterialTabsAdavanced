@@ -118,7 +118,7 @@ repositories {
 }
 
 dependencies {
-    compile('com.hkm:advancedmaterialtabs:1.0.0@aar')
+     compile 'com.hkm:advancedmaterialtabs:1.0.0@aar'
 }
 
 ```
