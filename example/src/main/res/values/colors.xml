@@ -4,4 +4,20 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="textColor">#FFFFFF</color>
     <color name="colorAccent">#FFEB3B</color>
+    <color name="colorAccentKan">#9a5623ff</color>
+    <!-- RED -->
+    <color name="red_50">#fde0dc</color>
+    <color name="red_100">#f9bdbb</color>
+    <color name="red_200">#f69988</color>
+    <color name="red_300">#f36c60</color>
+    <color name="red_400">#e84e40</color>
+    <color name="red_500">#e51c23</color>
+    <color name="red_600">#dd191d</color>
+    <color name="red_700">#d01716</color>
+    <color name="red_800">#c41411</color>
+    <color name="red_900">#b0120a</color>
+    <color name="red_a100">#ff7997</color>
+    <color name="red_a200">#ff5177</color>
+    <color name="red_a400">#ff2d6f</color>
+    <color name="red_a700">#e00032</color>
 </resources>

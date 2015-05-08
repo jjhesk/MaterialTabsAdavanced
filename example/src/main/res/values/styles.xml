@@ -6,7 +6,7 @@
     </style>
 
 
-    <style name="MyAppTheme" parent="Theme.AppCompat.Light" >
+    <style name="MyAppTheme" parent="Theme.AppCompat.Light">
         <!-- Use the Toolbar instead of the ActionBar
         (new in API 21 and AppCompat). -->
         <item name="windowActionBar">false</item>
@@ -31,14 +31,9 @@
         <!-- android:textColorPrimary is the  color of the title text
              in the Toolbar, in the Theme.AppCompat theme:  -->
         <item name="android:textColorPrimary">@color/textColor</item>
-
-
     </style>
 
-
-
     <style name="MyMenu" parent="Theme.AppCompat.Light">
-
         <item name="android:textColorPrimary">@color/colorPrimary</item>
     </style>
 

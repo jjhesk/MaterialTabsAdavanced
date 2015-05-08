@@ -11,8 +11,8 @@ import android.widget.TextView;
 import at.markushi.ui.RevealColorView;
 
 /**
- * enhanced ui and layout for further developments
- * <p/>
+ * Enhanced ui and layout for further developments
+ *
  * Created by hesk on 27/3/15.
  */
 public class tabBuilder<T extends TextView> {
@@ -63,15 +63,11 @@ public class tabBuilder<T extends TextView> {
                 hasIcon = false;
                 break;
 
-
-
             case TAB_ICON:
                 completeView = LayoutInflater.from(ctx).inflate(R.layout.tab_icon, null);
                 icon = (ImageView) completeView.findViewById(R.id.icon);
                 hasIcon = true;
                 break;
-
-
 
             case TAB_MATERIAL:
                 completeView = LayoutInflater.from(ctx).inflate(R.layout.material_tab, null);
@@ -79,8 +75,6 @@ public class tabBuilder<T extends TextView> {
                 background = (RevealColorView) completeView.findViewById(R.id.reveal);
                 hasIcon = false;
                 break;
-
-
 
             case TAB_MATERIAL_ICON:
                 completeView = LayoutInflater.from(ctx).inflate(R.layout.material_tab_icon, null);
@@ -98,8 +92,6 @@ public class tabBuilder<T extends TextView> {
                 hasIcon = false;
                 break;
 
-
-
             case TAB_CUSTOM_ICON:
                 completeView = LayoutInflater.from(ctx).inflate(custom_layout_id, null);
                 icon = (ImageView) completeView.findViewById(R.id.icon);
@@ -107,21 +99,17 @@ public class tabBuilder<T extends TextView> {
                 hasIcon = true;
                 break;
 
-
             case TAB_CUSTOM_NO_BUBBLE:
                 completeView = LayoutInflater.from(ctx).inflate(custom_layout_id, null);
                 text = (T) completeView.findViewById(R.id.text);
                 hasIcon = false;
                 break;
 
-
             default:
                 completeView = LayoutInflater.from(ctx).inflate(R.layout.tab, null);
                 text = (T) completeView.findViewById(R.id.text);
                 hasIcon = false;
                 break;
-
-
         }
 
         selector = (ImageView) completeView.findViewById(R.id.selector);
@@ -131,7 +119,7 @@ public class tabBuilder<T extends TextView> {
     /**
      * get the whole tab area in layout view
      *
-     * @return
+     * @return The original View object
      */
 
     public View wholeTab() {
@@ -141,7 +129,7 @@ public class tabBuilder<T extends TextView> {
     /**
      * to determine if the icon is exist or not
      *
-     * @return
+     * @return bool
      */
     public boolean hasIcon() {
         return hasIcon;
@@ -150,7 +138,7 @@ public class tabBuilder<T extends TextView> {
     /**
      * get all text view based component for further settings
      *
-     * @return
+     * @return Generic type for the textview which has to be the extension for Textview
      */
     public T getTextView() {
         return text;
@@ -159,7 +147,7 @@ public class tabBuilder<T extends TextView> {
     /**
      * get all the icon related image view
      *
-     * @return
+     * @return an ImageView
      */
     public ImageView getIcon() {
         return icon;
@@ -168,7 +156,7 @@ public class tabBuilder<T extends TextView> {
     /**
      * the lower selection bar on the tab
      *
-     * @return
+     * @return an ImageView
      */
     public ImageView getSelector() {
         return selector;
@@ -177,7 +165,7 @@ public class tabBuilder<T extends TextView> {
     /**
      * the interactive panel for the touch area.
      *
-     * @return
+     * @return a RevealColorView from the on library: com.github.markushi:android-ui:1.2
      */
     public RevealColorView getBg() {
         return background;

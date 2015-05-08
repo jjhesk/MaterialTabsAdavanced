@@ -22,7 +22,6 @@ public class MainActivity extends ActionBarActivity implements MaterialTabListen
     private MyAdapter mMyAdapter;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,23 +35,26 @@ public class MainActivity extends ActionBarActivity implements MaterialTabListen
         mFragmentManager = getSupportFragmentManager();
         mMyAdapter = new MyAdapter(mFragmentManager);
 
-        viewPager = (ViewPager) findViewById(R.id.pager);
+       /* viewPager = (ViewPager) findViewById(R.id.pager);
         viewPager.setAdapter(mMyAdapter);
-        viewPager.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener(){
+        viewPager.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
 
             @Override
             public void onPageSelected(int position) {
                 tabHost.setSelectedNavigationItem(position);
             }
-        });
-
+        });*/
+        tabHost.setBorderReferenceColor(1, R.color.red_a100);
+        tabHost.setCustomBackground(R.drawable.tab_host_bottom_line);
         // insert all tabs from pagerAdapter data
         for (int i = 0; i < mMyAdapter.getCount(); i++) {
-            tabHost.addTab(
-                    tabHost
-                            .createInteractiveTab(mMyAdapter.getPageTitle(i))
-                            .setTabListener(this)
-            );
+
+            tabHost.addTab(tabHost.createCustomTextTab(R.layout.item_tab, mMyAdapter.getPageTitle(i).toString(), false).setTabListener(this));
+
+
+                         /*   .createInteractiveTab(mMyAdapter.getPageTitle(i))
+                            .setTabListener(this)*/
+
         }
     }
 
@@ -82,7 +84,7 @@ public class MainActivity extends ActionBarActivity implements MaterialTabListen
     @Override
     public void onTabSelected(MaterialTab materialTab) {
 
-        viewPager.setCurrentItem(materialTab.getPosition());
+        //viewPager.setCurrentItem(materialTab.getPosition());
 
     }
 

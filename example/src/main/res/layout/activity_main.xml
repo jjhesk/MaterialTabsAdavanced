@@ -1,10 +1,10 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:tools="http://schemas.android.com/tools"
-                xmlns:app="http://schemas.android.com/apk/res-auto"
-                android:orientation="vertical"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                tools:context=".MainActivity">
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
 
     <android.support.v7.widget.Toolbar
         android:layout_height="wrap_content"
@@ -12,22 +12,24 @@
         android:id="@+id/tool_bar"
         app:theme="@style/ToolbarStyle"
         app:popupTheme="@style/MyMenu"
-        android:background="@color/colorPrimary"
-        />
-    <hkm.ui.materialtabs.MaterialTabHost
+        android:background="@color/colorPrimary" />
+
+    <it.neokree.materialtabs.MaterialTabHost
         android:id="@+id/materialTabHost"
         android:layout_width="match_parent"
         android:layout_height="48dp"
         app:advtabs_textColor="@color/textColor"
-        app:advtabs_materialTabsPrimaryColor="@color/colorPrimary"
-        app:advtabs_accentColor="@color/colorAccent" />
+        app:advtabs_materialTabsPrimaryColor="@color/colorAccentKan"
+        app:advtabs_accentColor="@color/colorAccent"
+        app:advtabs_hasIcons="false"
+        app:advtabs_nonFixTabsCountStart="5"
+        android:background="@drawable/tab_host_bottom_line" />
 
     <android.support.v4.view.ViewPager
         android:layout_height="0px"
         android:layout_weight="1"
         android:layout_width="match_parent"
-        android:id="@+id/pager"
-        />
+        android:id="@+id/pager" />
 
 
 </LinearLayout>
