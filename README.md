@@ -89,12 +89,19 @@ Just the text only
 ```java
 private MaterialTabHost tab;
 
-   tab.addTab(tab.createCustomTextTab(R.layout.item_tab, txt, false).setTabListener(this));
+
+tab.addTab(tab.createCustomTextTab(R.layout.item_tab, txt, false).setTabListener(this));
 
 ```
+#### R.layout.item_tab
+That will be consist of your own table arrangement implementations.
 
-N.B. Your activity must <code>extends ActionBarActivity implements MaterialTabListener</code>
 
+
+It is required to apply with the callback interface from using setTabListener
+```java
+extends ActionBarActivity implements MaterialTabListener
+```
 
 ## Installations
 Please check with supported repo mavens
