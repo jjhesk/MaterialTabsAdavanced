@@ -3,16 +3,19 @@ MaterialTabsAdvanced  [![API](https://img.shields.io/badge/API-17%2B-brightgreen
 
 Custom Tabs with Material Design animations for pre-Lollipop devices<br>
 [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-MaterialTabs-brightgreen.svg?style=flat)](https://android-arsenal.com/details/1/1105)
-
-
 [Download example apk](https://raw.github.com/neokree/MaterialTabs/master/example.apk)
-
 It requires 14+ API and android support v7 (Toolbar)
 
 # Developer notes
 
 Dependency: [Android-UI](https://github.com/markushi/android-ui) Reveal Color View <br>
 If you are using MaterialTabs in your app and would like to be listed here, please let me know via [email](mailto:hesk.kam@101medialab.com)! <br>
+
+# Release features
+v1.0.1
+- [x] - Support custom font and custom textview by external textview library
+- [x] - Single line implementations
+- [x] - Adaptive layout and extra frames
 
 <h3>How to use:</h3>
 define it in xml layout with custom attributes
