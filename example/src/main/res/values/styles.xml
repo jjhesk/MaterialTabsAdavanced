@@ -1,33 +1,39 @@
 <resources>
-
     <style name="AppTheme" parent="MyAppTheme">
         <!-- Base application theme.
              Defining this lets values-v21/styles.xml reuse it with changes. -->
     </style>
-
-
-    <style name="MyAppTheme" parent="Theme.AppCompat.Light">
+    <style name="MyAppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Use the Toolbar instead of the ActionBar
         (new in API 21 and AppCompat). -->
         <item name="windowActionBar">false</item>
-
         <!-- colorPrimary is used, for instance, for the default ActionBar
         (but not Toolbar) background.
         We specify the same color for the toolbar background in
         toolbar.xml.. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
 
+        <item name="android:windowActionBarOverlay">true</item>
         <!-- colorPrimaryDark is used for the status bar (with the
         battery, clock, etc). -->
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-
         <!-- colorAccent is used as the default value for
         colorControlActivated which is used to tint widgets. -->
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
     </style>
 
+    <style name="HeaderBar">
+        <item name="elevation">0dp</item>
+        <item name="contentInsetEnd">0dp</item>
+        <item name="contentInsetStart">0dp</item>
+        <item name="android:actionBarStyle">@style/HeaderBar.ActionBarStyle</item>
+    </style>
 
-    <style name="ToolbarStyle" parent="Theme.AppCompat">
+    <style name="HeaderBar.ActionBarStyle">
+        <item name="android:background">@drawable/actionbar_bg_hb_white</item>
+    </style>
+
+    <style name="ToolbarStyle" parent="HeaderBar">
         <!-- android:textColorPrimary is the  color of the title text
              in the Toolbar, in the Theme.AppCompat theme:  -->
         <item name="android:textColorPrimary">@color/textColor</item>

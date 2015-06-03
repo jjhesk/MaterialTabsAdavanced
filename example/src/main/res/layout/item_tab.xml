@@ -12,7 +12,6 @@
     <com.neopixl.pixlui.components.textview.TextView
         android:id="@+id/text"
         pixlui:typeface="Montserrat-Bold.ttf"
-
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"

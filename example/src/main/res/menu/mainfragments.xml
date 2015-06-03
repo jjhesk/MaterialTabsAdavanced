@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".MainActivity">
+    <item
+        android:id="@+id/switchfragment1"
+        android:orderInCategory="100"
+        android:title="Example Tabs bar"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/switchfragment2"
+        android:orderInCategory="100"
+        android:title="Example text stuffing"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/switchfragment3"
+        android:orderInCategory="100"
+        android:title="Example 3"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/activityviews"
+        android:orderInCategory="100"
+        android:title="@string/toback"
+        app:showAsAction="never" />
+</menu>

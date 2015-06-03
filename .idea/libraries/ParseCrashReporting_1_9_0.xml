@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="ParseCrashReporting-1.9.0">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/example/libs/ParseCrashReporting-1.9.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

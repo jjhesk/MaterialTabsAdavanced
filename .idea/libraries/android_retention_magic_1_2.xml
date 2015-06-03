@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="android-retention-magic-1.2">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/example/libs/android-retention-magic-1.2.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

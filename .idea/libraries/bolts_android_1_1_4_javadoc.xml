@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="bolts-android-1.1.4-javadoc">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/example/libs/bolts-android-1.1.4-javadoc.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

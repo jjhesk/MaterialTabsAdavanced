@@ -1,8 +1,36 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:tools="http://schemas.android.com/tools"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                tools:context="net.giancarlofusiello.materialtabslibrary.Fragment2">
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="net.giancarlofusiello.materialtabslibrary.Fragment2">
 
+    <it.neokree.materialtabs.MaterialTabHost
+        android:id="@+id/materialTabHost"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        app:advtabs_textColor="@color/textColor"
+        app:advtabs_materialTabsPrimaryColor="@color/red_400"
+        app:advtabs_accentColor="@color/red_a100"
+        app:advtabs_hasIcons="false"
+        app:advtabs_nonFixTabsCountStart="5"
+        android:background="@drawable/tab_host_bottom_line" />
+
+    <LinearLayout
+        android:layout_below="@id/materialTabHost"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/contentbuffer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </ScrollView>
+    </LinearLayout>
 
 </RelativeLayout>

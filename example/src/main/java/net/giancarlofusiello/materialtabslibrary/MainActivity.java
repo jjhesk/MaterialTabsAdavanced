@@ -1,9 +1,11 @@
 package net.giancarlofusiello.materialtabslibrary;
 
+import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -13,7 +15,7 @@ import it.neokree.materialtabs.MaterialTabHost;
 import it.neokree.materialtabs.MaterialTabListener;
 
 
-public class MainActivity extends ActionBarActivity implements MaterialTabListener {
+public class MainActivity extends AppCompatActivity implements MaterialTabListener {
 
     private Toolbar toolbar;
     private MaterialTabHost tabHost;
@@ -22,6 +24,7 @@ public class MainActivity extends ActionBarActivity implements MaterialTabListen
     private MyAdapter mMyAdapter;
 
 
+    @SuppressLint("ResourceAsColor")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,11 +51,9 @@ public class MainActivity extends ActionBarActivity implements MaterialTabListen
         tabHost.setCustomBackground(R.drawable.tab_host_bottom_line);
         // insert all tabs from pagerAdapter data
         for (int i = 0; i < mMyAdapter.getCount(); i++) {
-
-            tabHost.addTab(tabHost.createCustomTextTab(R.layout.item_tab, mMyAdapter.getPageTitle(i).toString(), false).setTabListener(this));
-
-
-                         /*   .createInteractiveTab(mMyAdapter.getPageTitle(i))
+            final MaterialTab t = tabHost.createCustomTextTab(R.layout.item_tab, mMyAdapter.getPageTitle(i).toString(), false).setTabListener(this);
+            tabHost.addTab(t);
+         /*   .createInteractiveTab(mMyAdapter.getPageTitle(i))
                             .setTabListener(this)*/
 
         }
@@ -73,8 +74,8 @@ public class MainActivity extends ActionBarActivity implements MaterialTabListen
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.fragmentviews) {
+            startActivity(new Intent(this, FramActTesting.class));
             return true;
         }
 

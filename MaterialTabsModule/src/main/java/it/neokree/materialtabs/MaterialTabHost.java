@@ -25,7 +25,7 @@ import java.util.List;
  * @author neokree
  */
 @SuppressLint("InflateParams")
-public class MaterialTabHost extends RelativeLayout implements View.OnClickListener {
+public class MaterialTabHost extends RelativeLayout implements View.OnClickListener, MlistenrInternal {
 
     public static final int BESTFIT = 1, ITEMBASE = 2;
 
@@ -126,10 +126,11 @@ public class MaterialTabHost extends RelativeLayout implements View.OnClickListe
 
     /**
      * Programmatically select the layout id and have it reference in the runtime
-     * @param custom_tab_layout_id  the layout resource id of the tab item for custom use
-     * @param label_text         the label of the tab in string
-     * @param withBubble         the bool to show whether it has a bubble like presentation
-     * @return  Return in material tab object
+     *
+     * @param custom_tab_layout_id the layout resource id of the tab item for custom use
+     * @param label_text           the label of the tab in string
+     * @param withBubble           the bool to show whether it has a bubble like presentation
+     * @return Return in material tab object
      */
     public MaterialTab createCustomTextTab(int custom_tab_layout_id, String label_text, boolean withBubble) {
         final MaterialTab mattab = new MaterialTab(this.getContext(),
@@ -145,7 +146,7 @@ public class MaterialTabHost extends RelativeLayout implements View.OnClickListe
      * initialize the interactive tab during the run time
      *
      * @param label_text the label of the tab in string
-     * @return  Return in material tab object
+     * @return Return in material tab object
      */
     public MaterialTab createInteractiveTab(String label_text) {
         final MaterialTab mattab = new MaterialTab(this.getContext(),
@@ -175,7 +176,7 @@ public class MaterialTabHost extends RelativeLayout implements View.OnClickListe
      * every thing with the default design
      *
      * @param label_text the label of the tab in string
-     * @return  Return in material tab object
+     * @return Return in material tab object
      */
     public MaterialTab createTabText(String label_text) {
         final MaterialTab mattab = new MaterialTab(this.getContext(),
@@ -282,10 +283,9 @@ public class MaterialTabHost extends RelativeLayout implements View.OnClickListe
         tab.setTextColor(textColor);
         tab.setIconColor(iconColor);
         tab.setPosition(tabs.size());
-
+        tab.setInternalTabListener(this);
         // insert new tab in list
         tabs.add(tab);
-
         if (tabs.size() == fixtablimit && !hasIcons) {
             // switch tabs to scrollable before its draw
             scrollable = true;
@@ -302,6 +302,7 @@ public class MaterialTabHost extends RelativeLayout implements View.OnClickListe
 
     /**
      * jump to the tab selection item
+     *
      * @param position specific integer at the selected item
      */
     public void setSelectedNavigationItem(int position) {
@@ -328,8 +329,10 @@ public class MaterialTabHost extends RelativeLayout implements View.OnClickListe
         }
 
     }
+
     /**
      * jump to the tab selection item
+     *
      * @param position specific integer at the selected item
      */
     private void scrollTo(int position) {
@@ -380,37 +383,50 @@ public class MaterialTabHost extends RelativeLayout implements View.OnClickListe
         return new LinearLayout.LayoutParams(tabWidth, HorizontalScrollView.LayoutParams.MATCH_PARENT);
     }
 
+    private int screen_width;
+
+    @Override
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        screen_width = MeasureSpec.getSize(widthMeasureSpec);
+        int heightSize = MeasureSpec.getSize(heightMeasureSpec);
+        // Restrict the aspect ratio to 1:1, fitting within original specified dimensions
+       /*   int chosenDimension = Math.min(widthSize, heightSize);
+        widthMeasureSpec = MeasureSpec.makeMeasureSpec(chosenDimension, MeasureSpec.AT_MOST);
+        heightMeasureSpec = MeasureSpec.makeMeasureSpec(chosenDimension, MeasureSpec.AT_MOST);
+        getLayoutParams().height = chosenDimension;
+        getLayoutParams().width = chosenDimension;
+       */
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+    }
+
     /**
      * set to reinitialize the tab view
      */
-    @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
+
     public void notifyDataSetChanged() {
         super.removeAllViews();
         layout.removeAllViews();
-
+        //invalidate();
         final Point s = new Point();
-        this.getDisplay().getSize(s);
+        getDisplay().getSize(s);
+
         int screen_width = s.x;
+
         final int last_item = tabs.size() - 1;
         int tabWidth = screen_width / tabs.size() - (borderEdge ? (int) (borderwidth * density) : 0);
         // set params for resizing tabs width
         LinearLayout.LayoutParams params = genlayoutParams(tabWidth);
         if (!scrollable) { // not scrollable tabs
-
-
             for (int i = 0; i < tabs.size(); i++) {
                 MaterialTab t = tabs.get(i);
                 //if (i == 0 && borderEdge) {
                 //    first tab
                 //    layout.addView(prepareBorderView());
                 //}
-
                 if (!outterBorderEnable && borderEdge && i == last_item) {
                     params = genlayoutParams(tabWidth + (int) density);
                 }
-
                 layout.addView(t.getView(), params);
-
                 if (borderEdge && i < last_item && !outterBorderEnable)
                     layout.addView(prepareBorderView());
                 if (borderEdge && outterBorderEnable)
@@ -431,16 +447,13 @@ public class MaterialTabHost extends RelativeLayout implements View.OnClickListe
                     if (!outterBorderEnable && borderEdge && i == last_item) {
                         params = genlayoutParams(tabWidth + (int) density);
                     }
-
                     //add tha tab
                     layout.addView(tab.getView(), params);
-
                     //add separator
                     if (borderEdge && i < last_item && !outterBorderEnable)
                         layout.addView(prepareBorderView());
                     if (borderEdge && outterBorderEnable)
                         layout.addView(prepareBorderView());
-
                     //add separator
                     if (i == tabs.size() - 1) {
                         // last tab
@@ -454,13 +467,11 @@ public class MaterialTabHost extends RelativeLayout implements View.OnClickListe
                 for (int i = 0; i < tabs.size(); i++) {
                     MaterialTab tab = tabs.get(i);
                     tabWidth = (int) (tab.getTabMinWidth() + (48 * density)); // 24dp + text/icon width + 24dp
-
                     params = genlayoutParams(tabWidth);
                     if (!outterBorderEnable && borderEdge && i == last_item) {
                         params = genlayoutParams(tabWidth + (int) density);
                     }
                     layout.addView(tab.getView(), params);
-
                     //add separator
                     if (borderEdge && i < last_item && !outterBorderEnable)
                         layout.addView(prepareBorderView());
@@ -474,32 +485,27 @@ public class MaterialTabHost extends RelativeLayout implements View.OnClickListe
         if (isTablet && scrollable) {
             // if device is a tablet and have scrollable tabs add right and left arrows
             Resources res = getResources();
-
             left = new ImageButton(this.getContext());
             left.setId(R.id.left);
             left.setImageDrawable(res.getDrawable(R.drawable.left_arrow));
             left.setBackgroundColor(Color.TRANSPARENT);
             left.setOnClickListener(this);
-
             // set 56 dp width and 48 dp height
             RelativeLayout.LayoutParams paramsLeft = new LayoutParams((int) (56 * density), (int) (48 * density));
             paramsLeft.addRule(RelativeLayout.ALIGN_PARENT_LEFT);
             paramsLeft.addRule(RelativeLayout.ALIGN_PARENT_TOP);
             paramsLeft.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
             this.addView(left, paramsLeft);
-
             right = new ImageButton(this.getContext());
             right.setId(R.id.right);
             right.setImageDrawable(res.getDrawable(R.drawable.right_arrow));
             right.setBackgroundColor(Color.TRANSPARENT);
             right.setOnClickListener(this);
-
             RelativeLayout.LayoutParams paramsRight = new LayoutParams((int) (56 * density), (int) (48 * density));
             paramsRight.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
             paramsRight.addRule(RelativeLayout.ALIGN_PARENT_TOP);
             paramsRight.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
             this.addView(right, paramsRight);
-
             RelativeLayout.LayoutParams paramsScroll = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
             paramsScroll.addRule(RelativeLayout.LEFT_OF, R.id.right);
             paramsScroll.addRule(RelativeLayout.RIGHT_OF, R.id.left);
@@ -511,6 +517,13 @@ public class MaterialTabHost extends RelativeLayout implements View.OnClickListe
         }
 
         this.setSelectedNavigationItem(tabSelected);
+    }
+
+    private boolean autoUnselect = false;
+
+    public MaterialTabHost setOnlySetectOneTab(boolean t) {
+        autoUnselect = t;
+        return this;
     }
 
     public MaterialTab getCurrentTab() {
@@ -525,27 +538,43 @@ public class MaterialTabHost extends RelativeLayout implements View.OnClickListe
     @Override
     public void onClick(View v) { // on tablet left/right button clicked
         int currentPosition = this.getCurrentTab().getPosition();
-
         if (v.getId() == R.id.right && currentPosition < tabs.size() - 1) {
             currentPosition++;
-
             // set next tab selected
             this.setSelectedNavigationItem(currentPosition);
-
             // change fragment
             tabs.get(currentPosition).getTabListener().onTabSelected(tabs.get(currentPosition));
             return;
         }
-
         if (v.getId() == R.id.left && currentPosition > 0) {
             currentPosition--;
-
             // set previous tab selected
             this.setSelectedNavigationItem(currentPosition);
             // change fragment
             tabs.get(currentPosition).getTabListener().onTabSelected(tabs.get(currentPosition));
             return;
         }
+    }
 
+    private void interaction(MaterialTab tab) {
+        if (autoUnselect && getCurrentTab() != tab) {
+            getCurrentTab().disableTab();
+            tab.activateTab();
+        }
+    }
+
+    @Override
+    public void onTabSelected(MaterialTab tab) {
+        interaction(tab);
+    }
+
+    @Override
+    public void onTabReselected(MaterialTab tab) {
+        interaction(tab);
+    }
+
+    @Override
+    public void onTabUnselected(MaterialTab tab) {
+        interaction(tab);
     }
 }

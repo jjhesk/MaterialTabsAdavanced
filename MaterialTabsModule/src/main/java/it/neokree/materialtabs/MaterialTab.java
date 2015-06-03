@@ -76,7 +76,6 @@ public class MaterialTab<T extends TextView> implements View.OnTouchListener {
     }
 
 
-
     public void setAccentColor(int color) {
         this.accentColor = color;
         this.textColor = color;
@@ -209,29 +208,36 @@ public class MaterialTab<T extends TextView> implements View.OnTouchListener {
                     }
                 });
             }
-
+            // if the tab is active when the user click on it it will be reselect
             // set the click
             if (listener != null) {
-
                 if (active) {
-                    // if the tab is active when the user click on it it will be reselect
                     listener.onTabReselected(this);
                 } else {
                     listener.onTabSelected(this);
                 }
             }
+            if (active) {
+                internaListener.onTabReselected(this);
+            } else {
+                internaListener.onTabSelected(this);
+            }
             // if the tab is not activated, it will be active
-            if (!active)
-                this.activateTab();
-
+            if (!active) this.activateTab();
             return true;
         }
-
         return false;
     }
 
+    private MlistenrInternal internaListener;
+
     public View getView() {
         return completeView;
+    }
+
+    public MaterialTab setInternalTabListener(MlistenrInternal l) {
+        internaListener = l;
+        return this;
     }
 
     public MaterialTab setTabListener(MaterialTabListener listener) {
