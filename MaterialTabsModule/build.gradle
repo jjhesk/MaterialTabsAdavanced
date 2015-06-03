@@ -2,8 +2,8 @@ apply plugin: 'com.android.library'
 apply from: "$rootProject.projectDir/version.gradle"
 
 android {
-    compileSdkVersion 21
-    buildToolsVersion '21.1.2'
+    compileSdkVersion 22
+    buildToolsVersion "22.0.1"
 
     defaultConfig {
         minSdkVersion project.ANDROID_BUILD_MIN_SDK_VERSION
@@ -22,8 +22,7 @@ android {
 }
 
 dependencies {
-    compile 'com.github.markushi:android-ui:1.2'
-    compile 'com.android.support:appcompat-v7:21.0.0'
+    compile 'com.android.support:appcompat-v7:22.1.1'
     compile 'com.github.markushi:android-ui:1.2'
 }
 

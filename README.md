@@ -1,9 +1,8 @@
 MaterialTabsAdvanced  [![API](https://img.shields.io/badge/API-17%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=17) [![gitpay](http://fc07.deviantart.net/fs70/f/2012/336/f/9/little_pixel_heart_by_tiny_bear-d5mtwiu.gif)](https://gratipay.com/jjhesk/)  
 ============
-
-Custom Tabs with Material Design animations for pre-Lollipop devices<br>
-[![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-MaterialTabs-brightgreen.svg?style=flat)](https://android-arsenal.com/details/1/1105)
-[Download example apk](https://raw.github.com/neokree/MaterialTabs/master/example.apk)
+Custom Tabs with Material Design animations for pre-Lollipop devices
+[![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-MaterialTabsAdavanced-brightgreen.svg?style=flat)](http://android-arsenal.com/details/1/1807)
+[Download example apk]
 It requires 14+ API and android support v7 (Toolbar)
 
 # Developer notes
@@ -12,6 +11,8 @@ Dependency: [Android-UI](https://github.com/markushi/android-ui) Reveal Color Vi
 If you are using MaterialTabs in your app and would like to be listed here, please let me know via [email](mailto:hesk.kam@101medialab.com)! <br>
 
 # Release features
+v1.0.4
+- [x] - fix some bugs OnePlusOne
 v1.0.1
 - [x] - Support custom font and custom textview by external textview library
 - [x] - Single line implementations

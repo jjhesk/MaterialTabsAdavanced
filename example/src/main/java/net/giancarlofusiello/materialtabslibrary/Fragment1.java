@@ -31,10 +31,8 @@ public class Fragment1 extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment1, container, false);
-
         ImageButton fabImageButton = (ImageButton) view.findViewById(R.id.fab_image_button);
         WebView webView = (WebView) view.findViewById(R.id.web_view);
-
         fabImageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
