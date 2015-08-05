@@ -1,3 +1,5 @@
+[![Android Gems](http://www.android-gems.com/badge/jjhesk/MaterialTabsAdavanced.svg?branch=master)](http://www.android-gems.com/lib/jjhesk/MaterialTabsAdavanced)
+
 MaterialTabsAdvanced  [![API](https://img.shields.io/badge/API-17%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=17) [![gitpay](http://fc07.deviantart.net/fs70/f/2012/336/f/9/little_pixel_heart_by_tiny_bear-d5mtwiu.gif)](https://gratipay.com/jjhesk/)  
 ============
 Custom Tabs with Material Design animations for pre-Lollipop devices
