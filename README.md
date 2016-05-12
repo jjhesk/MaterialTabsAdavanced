@@ -161,4 +161,4 @@ N default  = 3
 <img src="https://raw.github.com/neokree/MaterialTabs/master/screen-tablet.jpg" alt="screenshot" width="600px" height="auto" />
 
 ###Donation Accepted
-![wallet](qrwallet.png)
+![wallet](http://s32.postimg.org/sdd1oio1t/qrwallet.jpg)
